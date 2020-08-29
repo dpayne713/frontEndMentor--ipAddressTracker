@@ -1,0 +1,116 @@
+:root {
+    --Very-Dark-Gray: hsl(0, 0%, 17%);
+    --Dark-Gray: hsl(0, 0%, 59%);
+}
+
+*, 
+*::before, 
+*::after {
+    margin: 0; 
+    padding: 0;
+    box-sizing: inherit; 
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    padding: 8rem 4rem; 
+    background-color: lightgrey;
+}
+
+.header {
+    background-image: url(/images/pattern-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 81rem;
+    height: 16rem; 
+    margin: 0 auto;
+    text-align: center; 
+}
+
+.header__h1 {
+    font-size: 2.2rem; 
+    font-weight: 500;
+    line-height: 1.4rem;  
+    color: white; 
+    padding-top: 2rem; 
+}
+
+.header__input {
+    width: 28rem; 
+    height: 3.5rem;
+    margin-top: 2rem;
+    font-size: 1.2rem; 
+    color: var(--Very-Dark-Gray);  
+    border-radius: .5rem 0 0 .5rem; 
+    border: none; 
+    padding-left: 1rem; 
+}
+
+.header__input:focus {
+    border: none; 
+}
+.header__input-button {
+    height: 3.5rem; 
+    width: 3.5rem; 
+    background-color: var(--Very-Dark-Gray);
+    color: white; 
+    font-size: 2rem; 
+    transform: translate(-.1rem, 2px);
+    border: none; 
+    border-radius: 0 .5rem .5rem 0; 
+    cursor: pointer;
+}
+
+
+.section__contents {
+    width: 100%; 
+    position: relative; 
+}
+
+.info-box-container {
+    position: absolute; 
+    height: 9rem; 
+    width: 62rem; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; 
+    display: flex; 
+    flex-direction: row;    
+    justify-content: space-between;
+    align-items: center; 
+    background-color: white; 
+    border-radius: 1rem; 
+}
+
+.info {
+    height: 7rem; 
+    flex-basis: 15rem; 
+    padding: 1rem;
+    border-right: .5px solid var(--Dark-Gray);
+}
+
+.info-box--heading {
+    font-size: 1rem; 
+    color: var(--Dark-Gray)
+}
+
+.info-box--response {
+    font-size: 1.7rem; 
+    color: var(--Very-Dark-Gray);
+    font-weight: 500; 
+}
+
+#mapid {
+    max-width: 81rem; 
+    height: 29rem; 
+    margin: 0 auto; 
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
