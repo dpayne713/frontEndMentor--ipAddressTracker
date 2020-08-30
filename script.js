@@ -15,20 +15,31 @@ let loc = {
     IP : 0, 
     location: '', 
     timezone: '',
-    ISP: ''
+    ISP: '', 
+    timeZoneFunc(string) {
+        if (string) {
+            if (string.includes('/')) {
+            slash = string.indexOf('/')
+            this.timezone = `${string.substring(0, slash)}, ${string.substring(slash + 1)}`
+            } else {
+            this.timezone = string; 
+            } 
+        }
+    }
 }
-
-
 let data = async function(query = '') {
     
     let result = await fetch(`http://ip-api.com/json/${query}`)
-    let data = await result.json();   
+    let data = await result.json(); 
+    console.log(data.timezone)  
     loc.lat = data.lat;
     loc.lon = data.lon;
+    loc.ISP = data.isp; 
+    loc.timeZoneFunc(data.timezone);
 
     dom.ip.textContent = data.query;
     dom.location.textContent = `${data.city}, ${data.country}`; 
-    dom.timezone.textContent = data.timezone;
+    dom.timezone.textContent = loc.timezone; 
     dom.provider.textContent = data.isp; 
     mymap.setView([loc.lat, loc.lon], 10);
 }
@@ -51,11 +62,14 @@ dom.input.addEventListener('keydown', function(event) {
 ////////// Leafletjs /////////////////////////////
 /////////////////////////////////////////////////
 
-let mymap = L.map('mapid').setView([40.7128, -74.0060], 10)
+let mymap = L.map('mapid', {
+    zoomControl: false, 
+    dragging: false, 
+}).setView([40.7128, -74.0060], 10)
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
+        maxZoom: 15,
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
