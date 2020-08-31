@@ -1,4 +1,3 @@
-
 const dom = {
     input : document.querySelector('.header__input'),
     inputForm : document.getElementById('inputForm'),
@@ -27,9 +26,27 @@ let loc = {
         }
     }
 }
+
+// let data = async function(query = '') {
+    
+//     let result = await fetch(`http://ip-api.com/json/${query}`)
+//     let data = await result.json(); 
+//     loc.lat = data.lat;
+//     loc.lon = data.lon;
+//     loc.ISP = data.isp; 
+//     loc.timeZoneFunc(data.timezone);
+
+//     dom.ip.textContent = data.query;
+//     dom.location.textContent = `${data.city}, ${data.country}`; 
+//     dom.timezone.textContent = loc.timezone; 
+//     dom.provider.textContent = data.isp; 
+//     mymap.setView([loc.lat, loc.lon], 10);
+// }
+
+
 let data = async function(query = '') {
     
-    let result = await fetch(`http://ip-api.com/json/${query}`)
+    let result = await fetch(`https://cors-anywhere.herokuapp.com/http://ip-api.com/json/${query}`)
     let data = await result.json(); 
     loc.lat = data.lat;
     loc.lon = data.lon;
@@ -43,7 +60,12 @@ let data = async function(query = '') {
     mymap.setView([loc.lat, loc.lon], 10);
 }
 
-data();
+
+
+
+
+
+
 
 dom.inputButton.addEventListener('click', function() {
    
@@ -83,3 +105,4 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 
 
+data();
