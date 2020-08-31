@@ -31,7 +31,6 @@ let data = async function(query = '') {
     
     let result = await fetch(`http://ip-api.com/json/${query}`)
     let data = await result.json(); 
-    console.log(data.timezone)  
     loc.lat = data.lat;
     loc.lon = data.lon;
     loc.ISP = data.isp; 
